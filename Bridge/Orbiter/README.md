@@ -1,0 +1,142 @@
+# jonathan
+Jonathan's code
+
+# Orbiter  
+![Orbiter](https://avatars.githubusercontent.com/u/102346948?s=200&v=4)  
+  
+**Swap**: *DONE* ✅  
+  
+**urls**
+- mainnet:          https://www.orbiter.finance/
+- testnet:          https://rinkeby.orbiter.finance/  
+- documentation:    https://docs.orbiter.finance/ 
+  
+**Bridge** *starknet* / *arbitrum* / *polygon* / *ethereum* / *zksync2* / *optimism* / *metis* / *boba* / *zksync2* / *bsc* / *arbitrum_nova* / *polygon_zkevm* / *base* / *linea* / *mantle*  
+  
+**Tokens** *ETH* / *USDC* / *DAI* / *USDT*
+<br />
+<br />
+
+## ![ETH](assets/ethereum.png) Ethereum bridge
+| Chain    | ![DAI](assets/dai.png) | ![ETH](assets/eth.png) | ![USDC](assets/usdc.png) | ![USDT](assets/usdt.png) |
+|----------|------------------------|------------------------|--------------------------|--------------------------|
+| starknet |           ✅           |           ✅            |            ✅            |             ✅           |
+| arbitrum |           ✅           |           ✅            |            ✅            |             ✅           |
+| polygon  |           ✅           |           ✅            |            ✅            |             ✅           |
+| zksync2  |           ❌           |           ✅            |            ✅            |             ❌           |
+| optimism |           ✅           |           ✅            |            ✅            |             ✅           |
+<br />
+<br />
+
+## ![Stark](assets/starknet.png) Starknet bridge
+| Chain    | ![DAI](assets/dai.png) | ![ETH](assets/eth.png) | ![USDC](assets/usdc.png) | ![USDT](assets/usdt.png) |
+|----------|------------------------|------------------------|--------------------------|--------------------------|
+| ethereum |           ✅           |           ✅            |            ✅            |             ✅           |
+| arbitrum |           ✅           |           ✅            |            ✅            |             ✅           |
+| polygon  |           ✅           |           ✅            |            ✅            |             ✅           |
+| zksync2  |           ❌           |           ✅            |            ✅            |             ❌           |
+| optimism |           ✅           |           ✅            |            ✅            |             ✅           |
+<br />
+<br />
+
+## ![ARB](assets/arbitrum.png) Arbitrum bridge
+| Chain    | ![DAI](assets/dai.png) | ![ETH](assets/eth.png) | ![USDC](assets/usdc.png) | ![USDT](assets/usdt.png) |
+|----------|------------------------|------------------------|--------------------------|--------------------------|
+| ethereum |           ✅           |           ✅            |            ✅            |             ✅           |
+| starknet |           ✅           |           ✅            |            ✅            |             ✅           |
+| polygon  |           ✅           |           ✅            |            ✅            |             ✅           |
+| zksync2  |           ❌           |           ✅            |            ✅            |             ❌           |
+| optimism |           ✅           |           ✅            |            ✅            |             ✅           |
+<br />
+<br />
+
+## ![MATIC](assets/polygon.png) Polygon bridge
+| Chain    | ![DAI](assets/dai.png) | ![ETH](assets/eth.png) | ![USDC](assets/usdc.png) | ![USDT](assets/usdt.png) |
+|----------|------------------------|------------------------|--------------------------|--------------------------|
+| ethereum |           ✅           |           ✅            |            ✅            |             ✅           |
+| starknet |           ✅           |           ✅            |            ✅            |             ✅           |
+| arbitrum |           ✅           |           ✅            |            ✅            |             ✅           |
+| zksync2  |           ❌           |           ✅            |            ✅            |             ❌           |
+| optimism |           ✅           |           ✅            |            ✅            |             ✅           |
+<br />
+<br />
+
+## ![OP](assets/optimism.png) Optimism bridge
+| Chain    | ![DAI](assets/dai.png) | ![ETH](assets/eth.png) | ![USDC](assets/usdc.png) | ![USDT](assets/usdt.png) |
+|----------|------------------------|------------------------|--------------------------|--------------------------|
+| ethereum |           ✅           |           ✅            |            ✅            |             ✅           |
+| starknet |           ✅           |           ✅            |            ✅            |             ✅           |
+| arbitrum |           ✅           |           ✅            |            ✅            |             ✅           |
+| zksync2  |           ❌           |           ✅            |            ✅            |             ❌           |
+| polygon  |           ✅           |           ✅            |            ✅            |             ✅           |
+<br />
+<br />
+
+## ![ZK](assets/zkSync.png) zkSync2 bridge
+| Chain    | ![DAI](assets/dai.png) | ![ETH](assets/eth.png) | ![USDC](assets/usdc.png) | ![USDT](assets/usdt.png) |
+|----------|------------------------|------------------------|--------------------------|--------------------------|
+| ethereum |           ❌           |           ✅            |            ✅            |             ❌           |
+| starknet |           ❌           |           ✅            |            ✅            |             ❌           |
+| arbitrum |           ❌           |           ✅            |            ✅            |             ❌           |
+| optimism |           ❌           |           ✅            |            ✅            |             ❌           |
+| polygon  |           ❌           |           ✅            |            ✅            |             ❌           |
+<br />
+<br />
+<br />
+<br />
+
+## Calling Orbiter Functions
+<br />
+
+To use it just import the directory named *Orbiter*  
+```javascript
+import Orbiter from "./Bridge/Orbiter"
+
+Orbiter.swap( swap_params )
+```
+<br />
+<br />
+In this module you will be able to interact with all functionnalities of the *Orbiter* Bridge on all its supported network (see `/Orbiter/config/maker-1.ts`)  
+    
+<br />
+  
+> [!NOTE]
+> For each chains (see `/Orbiter/config/chains.ts`) a default public ***RPC*** has been set up but feel free to put your own ones.  
+<br />
+
+```javascript
+export const swap = async( swap_params: {
+    evmSigner: Wallet,
+    starkSigner: Account,
+    token: string,
+    fromChain: Chains, 
+    toChain: Chains,
+    
+    amount?: string,
+    max?: boolean,
+    network?: 'TESTNET' | 'MAINNET' 
+}): Promise<void>
+```
+
+## Swap
+The swap function need an object of at least 6 parameters and 3 optionnals  
+
+`evmSigner`: The signer of an EVM (ethereum virtual machine) account that will sign the transaction on the evm networks  
+  
+`starkSigner`: The signer of an Starknet acount that will sign the transaction on the starknet network  
+  
+`token`: The token address, this token will be bridge to the target network make sure that the token address match with its network *fromChain* 
+  
+`fromChain`: Name of the source network  
+  
+`toChain`: Name of the target network   
+  
+`amount (optional)`: The amount to be bridge it is worth noting that makers have 'minimum' amount to be send otherwise it will revert the function (see `/Orbital/config/makerListMainnet` to know the details). If you use the `max` params to true, no need to specify an amount.  
+  
+`max (optional)`: if activated it will send the total balance of `token` param from the `fromChain` chain. It is worth noting that makers have a 'maximum' amount ceiling, if your balance is above the function will throw an error.
+  
+`network (optional)`: The network wether on mainnet or testnet (default is testnet)
+
+## Author
+ 
+Tondelier Jonathan
